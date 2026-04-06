@@ -14,7 +14,7 @@ set_prop() {
 
 # Override the properties
 [ -n "$MAX_PLAYERS" ] && set_prop "max-players" "$MAX_PLAYERS"
-[ -n "$DIFFICULTY" ] && set_prop "DIFFICULTY" "$DIFFICULTY"
+[ -n "$DIFFICULTY" ] && set_prop "difficulty" "$DIFFICULTY"
 
 # Start the server
 exec java -jar mcserver.jar nogui
