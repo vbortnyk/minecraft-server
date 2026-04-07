@@ -1,4 +1,4 @@
-FROM eclipse-temurin:25-jre
+FROM eclipse-temurin:25-jre-alpine
 
 WORKDIR /app
 
@@ -6,7 +6,7 @@ COPY . .
 
 ENV MC_SERVER_NAME=mc-server
 
-ENV APP_PORT=8888
+ENV APP_PORT=25565
 
 ENV MAX_PLAYERS=5
 

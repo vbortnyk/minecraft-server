@@ -4,18 +4,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: mc-server:latest
 
     container_name: mc-server
 
     ports:
-      - "8888:8888"
+      - "8888:25565"
 
     volumes:
       - local_data:/app/world 
 
     environment:
-      - APP_PORT=8888
       - MAX_PLAYERS=7
       - DIFFICULTY=hard
 
