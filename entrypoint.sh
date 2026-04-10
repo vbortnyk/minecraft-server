@@ -2,7 +2,7 @@
 
 CONFIG_FILE="./server.properties"
 
-# Function to verride a property
+# Function to override a property
 set_prop() {
   KEY="$1"
   VALUE="$2"
