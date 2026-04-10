@@ -14,8 +14,8 @@ services:
       - local_data:/app/world 
 
     environment:
-      - MAX_PLAYERS=7
-      - DIFFICULTY=hard
+      - MAX_PLAYERS=${MAX_PLAYERS}
+      - DIFFICULTY=${DIFFICULTY}
 
     restart: unless-stopped
 
