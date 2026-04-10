@@ -12,7 +12,7 @@ You should also have a basic knowledge of containerization and the shell.
     - [Run the server](#run-the-server)
     - [Build an image and run with Docker](#build-an-image-and-run-with-docker)
     - [Build an image and run with Docker compose](#build-an-image-and-run-with-docker-compose)
-- [Custom server configuration](#custom-server-configuration)
+- [Usage](#usage)
  - [Testing](#testing)
 
 
@@ -44,10 +44,7 @@ $ docker run -p <host-port>:25565 <your-image-name> -d
 ```
 This maps a port on your host machine to a port inside the container. The server runs inside the Docker container and is accessible via the specified host port. The port `22565` is the default port for Minecraft Server and it is not recommended to change it otherwise this can cause incorrect behavior.
 
-To override default properties, you can pass environment variables when starting the container
-```bash
-docker run -e MAX_PLAYERS=10 -e DIFFICULTY=hard <your-image-name> -d
-```
+
 
 
 #### Build an image and Run with Docker Compose
@@ -70,12 +67,22 @@ To start the server with a custom configuration, the Docker image may include an
 
 Additional server settings can be found in the `server.properties` file.
 
+
+
+#### Usage
 To override default properties, you can pass environment variables when starting the container
 
+Docker
+```bash
+docker run -e MAX_PLAYERS=10 -e DIFFICULTY=hard <your-image-name> -d
+```
+
+Dockre Compose
 ```bash
 MAX_PLAYERS=3 DIFFICULTY=normal docker compose up -d
 ```
 Add `--build` at the end if a new build is required
+
 
 ### Testing
 There are two main options for testing:
