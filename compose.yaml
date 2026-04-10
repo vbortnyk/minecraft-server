@@ -1,0 +1,23 @@
+
+services:
+  mc-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: mc-server
+
+    ports:
+      - "8888:25565"
+
+    volumes:
+      - local_data:/app/world 
+
+    environment:
+      - MAX_PLAYERS=${MAX_PLAYERS}
+      - DIFFICULTY=${DIFFICULTY}
+
+    restart: unless-stopped
+
+volumes:
+   local_data:
