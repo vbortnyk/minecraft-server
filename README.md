@@ -32,36 +32,50 @@ $ java -jar mcserver.jar
 
 Build a docker image
 ```bash
-$ docker build -t <your-image-name>
+$ docker build -t <your-image-name> .
 ```
 Start a Docker container with the newly created image
 ```bash
-$ docker run <your-image-name> 
+$ docker run <your-image-name> -d
 ```
 To set a custom port that the server will listen on
 ```bash
-$ docker run -p <host-port>:<container-port>
+$ docker run -p <host-port>:25565 <your-image-name> -d
 ```
-This maps a port on your host machine to a port inside the container. The server runs inside the Docker container and is accessible via the specified host port..
+This maps a port on your host machine to a port inside the container. The server runs inside the Docker container and is accessible via the specified host port. The port `22565` is the default port for Minecraft Server and it is not recommended to change it otherwise this can cause incorrect behavior.
+
+To override default properties, you can pass environment variables when starting the container
+```bash
+docker run -e MAX_PLAYERS=10 -e DIFFICULTY=hard <your-image-name> -d
+```
 
 
 #### Build an image and Run with Docker Compose
-Run the following command
-```bash
-$ docker compose up --build
-```
-This command builds the image and starts the server in a Docker container. It will be accessible via the host port specified in the compose.yaml file.
+Navigate to our project and remame the file `.env-template`. 
+This file contains environmenf variables with the default values for  MAX_USERS and DIFFICULTY.
 
-### Custom Server Configuration
+```bash
+$ cd minecraft-server
+$ rm .env-template .env
+```
+
+Then run the following command
+```bash
+$ docker compose up -d --build
+```
+This command builds the image and starts the server in a Docker container. It will be accessible via the host port specified in the `compose.yaml` file.
+
+#### Custom Server Configuration
 To start the server with a custom configuration, the Docker image may include an entrypoint.sh script that reads environment variables and overrides default server properties such as MAX_PLAYERS or DIFFICULTY.
 
-Additional server settings can be found in the server.properties file.
+Additional server settings can be found in the `server.properties` file.
 
 To override default properties, you can pass environment variables when starting the container
 
 ```bash
-docker run -e MAX_PLAYERS=10 -e DIFFICULTY=hard
+MAX_PLAYERS=3 DIFFICULTY=normal docker compose up -d
 ```
+Add `--build` at the end if a new build is required
 
 ### Testing
 There are two main options for testing:
